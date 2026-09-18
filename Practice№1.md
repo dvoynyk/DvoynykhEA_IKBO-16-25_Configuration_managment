@@ -168,3 +168,11 @@ ethernet 143	Ethernet	# Ethernet encapsulation for SRv6 [RFC8986]
 # The following entries have not been assigned by IANA but are used
 # internally by the Linux kernel.
 mptcp	262	MPTCP		# Multipath TCP connection
+
+awk '!/^#/ && NF {print $2, $1}' /etc/protocols | sort -nr | head -n 5
+
+262 mptcp
+143 ethernet
+142 rohc
+141 wesp
+140 shim6
