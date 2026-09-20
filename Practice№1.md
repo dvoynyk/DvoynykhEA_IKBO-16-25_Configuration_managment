@@ -376,3 +376,42 @@ echo "int x = 5;" > test.c
 Файл test.c НЕ содержит комментарий
 Файл test.py содержит комментарий
 ```
+
+# Задание №7
+
+```bash
+nano dublicates
+```
+
+```bash
+#!/bin/bash
+
+dir="$1"
+
+for f1 in $(find "$dir" -type f); do
+        for f2 in $(find "$dir" -type f); do
+                if [[ "$f1" < "$f2" ]] && cmp -s "$f1" "$f2"; then
+                        echo "Дубликат  $f1 найден"
+                fi 
+        done
+done
+
+
+```
+> *Сохраняем файл и выходим из текстового редактора*
+
+```bash
+chmod +x dublicates
+```
+> *Создаём тестовые файлы и запускаем скрипт*
+
+```bash
+echo "123" > test/a.txt
+echo "123" > test/b.txt
+./dublicates test
+```
+
+**Результат:**
+```text
+Дубликаты  test/a.txt и test/b.txt найдены
+```
