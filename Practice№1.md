@@ -474,3 +474,31 @@ cat out.txt
 ```text
 Сейчас тут будет 4 пробела	 Вроде бы 4 вышло
 ```
+
+# Задание №10
+
+```bash
+nano empty
+```
+```bash
+#!/bin/bash
+
+dir="$1"
+
+find "$dir" -type f -empty -name "*.txt"
+```
+> *Сохраняем файл, выходим из текстового редактора, создаем тестовые файлы и запускаем скрипт*
+
+```bash
+chmod +x empty
+mkdir test_empty
+touch test_empty/empty1.txt          
+touch test_empty/empty2.txt         
+echo "не пустой" > test_empty/full.txt
+./empty test_empty
+```
+**Результат:**
+```text
+test_empty/empty1.txt
+test_empty/empty2.txt
+```
