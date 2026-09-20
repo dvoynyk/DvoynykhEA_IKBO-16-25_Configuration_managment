@@ -1,7 +1,12 @@
-# Задание№1
+# Задание №1
 
+```bash
 cat /etc/passwd
+```
 
+**Результат выполнения:**
+
+```text
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
@@ -51,9 +56,15 @@ colord:x:977:977:colord colour management daemon:/var/lib/colord:/usr/sbin/nolog
 gdm:x:975:975:Gnome Display Manager:/var/lib/gdm3:/bin/false
 elizaveta:x:1000:1000:elizaveta:/home/elizaveta:/bin/bash
 vboxadd:x:997:1::/var/run/vboxadd:/bin/false
+```
 
+```bash
 grep -o '^[a-zA-Z0-9_-]*' /etc/passwd | sort
+```
 
+**Результат:**
+
+```text
 _apt
 avahi
 backup
@@ -103,11 +114,19 @@ uuidd
 vboxadd
 whoopsie
 www-data
+```
 
-# Задание№2
+---
 
+# Задание №2
+
+```bash
 cat /etc/protocols
+```
 
+**Результат:**
+
+```text
 ip	0	IP		# internet protocol, pseudo protocol number
 hopopt	0	HOPOPT		# IPv6 Hop-by-Hop Option [RFC1883]
 icmp	1	ICMP		# internet control message protocol
@@ -168,19 +187,37 @@ ethernet 143	Ethernet	# Ethernet encapsulation for SRv6 [RFC8986]
 # The following entries have not been assigned by IANA but are used
 # internally by the Linux kernel.
 mptcp	262	MPTCP		# Multipath TCP connection
+```
 
+```bash
 awk '!/^#/ && NF {print $2, $1}' /etc/protocols | sort -nr | head -n 5
+```
 
+**Результат:**
+
+```text
 262 mptcp
 143 ethernet
 142 rohc
 141 wesp
 140 shim6
+```
 
-# Задание№3
+---
 
-sudo apt update && sudo apt install -y shellcheck // Установка  shellcheck для проверки файла
+# Задание №3
+
+Установка `shellcheck` для проверки файла:
+
+```bash
+sudo apt update && sudo apt install -y shellcheck
+```
+
+```bash
 nano banner
+```
+
+```bash
 #!/bin/bash
 text="$1"
 length=${#text}
@@ -189,7 +226,63 @@ g_ram=$(printf '%*s' "$needed_length" '' | tr ' ' '-')
 echo "+${g_ram}+"
 echo "| ${text} |"
 echo "+${g_ram}+"
-// Далее сохраняем файл и выходим из редактора текстового файла
+```
+
+> *Далее сохраняем файл и выходим из редактора текстового файла.*
+
+```bash
 chmod +x banner
 ./banner "Hello from RTU MIREA!"
 shellcheck banner
+```
+
+---
+
+# Задание №4
+
+```bash
+nano get_JavaC
+```
+
+```bash
+#!/bin/bash
+grep -o '[a-zA-Z_][a-zA-Z0-9_]*' "$1" | sort -u | tr '\n' ' '
+```
+
+> *Далее сохраняем файл и выходим из редактора текстового файла.*
+
+```bash
+chmod +x get_JavaC
+```
+
+> *Для проверки создаем файл `hello.c`:*
+
+```bash
+nano hello.c
+```
+
+```c
+#include <stdio.h>
+
+int main() {
+    printf("Hello world\n");
+    return 0;
+}
+```
+
+> *Далее сохраняем файл и выходим из редактора текстового файла.*
+
+```bash
+./get_JavaC hello.c
+```
+**Результат:**
+
+```text
+h Hello include int main n printf return stdio world
+```
+
+---
+
+# Задание №5
+
+*(Здесь вы сможете разместить выполнение Задания №5)*
