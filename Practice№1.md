@@ -415,3 +415,36 @@ echo "123" > test/b.txt
 ```text
 Дубликаты  test/a.txt и test/b.txt найдены
 ```
+# Задание №8
+
+```bash
+nano arhicator
+```
+```bash
+#!/bin/bash
+
+dir="$1"
+ext="$2"
+
+files=$(find "$dir" -type f -name "*.$ext")
+
+if [ -n "$files" ]; then
+    tar -cf archive.tar $files
+    echo "Архив archive.tar успешно создан"
+else
+    echo "Файлы с расширением .$ext не найдены"
+fi
+
+```
+
+> *Сохраняем файл, выходим из текстового редактора, создаем тестовый файл и зпускаем скрипт*
+
+```bash
+"Абсолютно бесполезный тестовый файл, который пойдет для архиватора" > test/test.txt
+chmod +x arhivator
+./arhivator test txt
+```
+**Результат:**
+```text
+Архив archive.tar успешно создан
+```
