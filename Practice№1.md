@@ -326,3 +326,53 @@ banner_2
 ```text
 Вызывается из любой папки
 ```
+
+# Задание №6
+
+```bash  
+nano check_comments
+```
+
+```bash                                                                 
+#!/bin/bash
+
+for file in *.c *.js *.py; do
+    [ -f "$file" ] || continue
+    first_line=$(head -n 1 "$file")
+
+    if [[ "$file" == *.py ]]; then
+        if echo "$first_line" | grep -q '^#'; then
+            echo "Файл $file содержит комментарий"
+        else
+            echo "Файл $file НЕ содержит комментарий"
+        fi
+    fi
+
+    if [[ "$file" == *.c || "$file" == *.js ]]; then
+        if echo "$first_line" | grep -qE '^//|^/\*'; then
+            echo "Файл $file содержит комментарий"
+        else
+            echo "Файл $file НЕ содержит комментарий"
+        fi
+    fi
+done
+```
+> *Сохраняем файл и выходим из текстового редактора*
+
+```bash
+chmod +x check_comments
+```
+
+> *Создадим тестовые файлы и запустим скрипт. Так как до этого для задания был создан файл hello.c, то он будет также проверен скриптом*
+
+```bash
+echo "# Python comment" > test.py
+echo "int x = 5;" > test.c
+./check_comments
+```
+**Результат:**
+```text
+Файл hello.c НЕ содержит комментарий
+Файл test.c НЕ содержит комментарий
+Файл test.py содержит комментарий
+```
