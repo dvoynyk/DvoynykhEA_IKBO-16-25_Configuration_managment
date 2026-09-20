@@ -285,4 +285,44 @@ h Hello include int main n printf return stdio world
 
 # Задание №5
 
-*(Здесь вы сможете разместить выполнение Задания №5)*
+```bash  
+nano reg
+```
+
+```bash                                                                 
+#!/bin/bash
+
+file_name="$1"
+chmod +x "$file_name"
+sudo cp "$file_name" /usr/local/bin/
+```
+
+> *Для проверки создадим исполняемый файл banner_2. Сохраняем файл и выходим из редактора тектового файла*
+
+```bash
+chmod +x reg
+nano banner_2
+```
+
+```bash
+#!/bin/bash
+
+echo "Вызывается из любой папки"
+```
+
+> *Сохраняем файл, выходим из редактора тектового файла и регистрируем banner_2 с помощью скрипта reg*
+``` bash
+./reg banner_2
+```
+
+> *Переходим в другую папку, чтобы убедиться в регистрации команды banner_2*
+
+``` bash
+cd Desktop
+banner_2
+```
+
+**Результат:**
+```text
+Вызывается из любой папки
+```
