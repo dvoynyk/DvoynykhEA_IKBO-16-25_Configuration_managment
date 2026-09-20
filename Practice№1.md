@@ -176,3 +176,20 @@ awk '!/^#/ && NF {print $2, $1}' /etc/protocols | sort -nr | head -n 5
 142 rohc
 141 wesp
 140 shim6
+
+# Задание№3
+
+sudo apt update && sudo apt install -y shellcheck // Установка  shellcheck для проверки файла
+nano banner
+#!/bin/bash
+text="$1"
+length=${#text}
+needed_length=$((length + 2))
+g_ram=$(printf '%*s' "$needed_length" '' | tr ' ' '-')
+echo "+${g_ram}+"
+echo "| ${text} |"
+echo "+${g_ram}+"
+// Далее сохраняем файл и выходим из редактора текстового файла
+chmod +x banner
+./banner "Hello from RTU MIREA!"
+shellcheck banner
