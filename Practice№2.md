@@ -106,5 +106,36 @@ latest: 5.2.1
 latest-4: 4.22.3
 
 published 10 months ago by jonchurch <npm@jonchurch.com>
-
  ```
+
+ # Задание№3
+
+В файле .dog :
+```
+digraph MatplotlibDependencies {
+    layout=circo;
+    node [shape=box, fontname="Helvetica", fontsize=10];
+
+    // Обратная зависимость
+    "seaborn" -> "matplotlib";
+
+    // Прямые зависимости matplotlib
+    "matplotlib" -> "contourpy";
+    "matplotlib" -> "cycler";
+    "matplotlib" -> "fonttools";
+    "matplotlib" -> "kiwisolver";
+    "matplotlib" -> "numpy";
+    "matplotlib" -> "packaging";
+    "matplotlib" -> "pillow";
+    "matplotlib" -> "pyparsing";
+    "matplotlib" -> "python-dateutil";
+
+    // зависимости второго уровня
+    "python-dateutil" -> "six";
+    "contourpy" -> "numpy";
+}
+```
+Получаются такие графы: 
+
+![Граф зависимостей matplotlib](images/matplotlib.png)
+![Граф зависимостей express](images/express.png)
