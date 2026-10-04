@@ -1,4 +1,4 @@
-Все задания выполнены в cmd
+Задания 1-2 решались через cmd
 
 # Задание №1
 
@@ -108,7 +108,7 @@ latest-4: 4.22.3
 published 10 months ago by jonchurch <npm@jonchurch.com>
  ```
 
- # Задание№3
+ # Задание №3
 
 В файле .dog :
 ```
@@ -135,7 +135,101 @@ digraph MatplotlibDependencies {
     "contourpy" -> "numpy";
 }
 ```
+
+```
+digraph ExpressDependencies {
+    rankdir=LR;
+    
+    nodesep=0.25;  
+    ranksep=1.5;   
+    splines=true;  
+    overlap=false; 
+
+    // Прямые зависимости
+    "express" -> "qs";
+    "express" -> "depd";
+    "express" -> "etag";
+    "express" -> "once";
+    "express" -> "send";
+    "express" -> "vary";
+    "express" -> "debug";
+    "express" -> "fresh";
+    "express" -> "cookie";
+    "express" -> "router";
+    "express" -> "accepts";
+    "express" -> "type-is";
+    "express" -> "parseurl";
+    "express" -> "statuses";
+    "express" -> "encodeurl";
+    "express" -> "mime-types";
+    "express" -> "proxy-addr";
+    "express" -> "body-parser";
+    "express" -> "escape-html";
+    "express" -> "http-errors";
+    "express" -> "on-finished";
+    "express" -> "content-type";
+    "express" -> "finalhandler";
+    "express" -> "range-parser";
+
+    // Зависимости второго уровня
+    "body-parser" -> "bytes";
+    "body-parser" -> "raw-body";
+    "send" -> "ms";
+    "http-errors" -> "inherits";
+    "http-errors" -> "statuses";
+    "debug" -> "ms";
+    "accepts" -> "negotiator";
+    "type-is" -> "media-typer";
+}
+```
 Получаются такие графы: 
 
 ![Граф зависимостей matplotlib](images/matplotlib.png)
 ![Граф зависимостей express](images/express.png)
+
+# Задание №4
+
+```
+% Use this editor as a MiniZinc scratch book
+include "alldifferent.mzn";
+
+var 0..9: d1;
+var 0..9: d2;
+var 0..9: d3;
+var 0..9: d4;
+var 0..9: d5;
+var 0..9: d6;
+
+var int: sum3 = d1 + d2 + d3;
+
+constraint d1 + d2 + d3 == d4 + d5 + d6;
+constraint alldifferent([d1, d2, d3, d4, d5, d6]);
+
+solve minimize sum3;
+```
+
+**Вывод:**
+
+```
+d1 = 8;
+d2 = 1;
+d3 = 0;
+d4 = 4;
+d5 = 3;
+d6 = 2;
+_objective = 9;
+----------
+d1 = 6;
+d2 = 2;
+d3 = 0;
+d4 = 4;
+d5 = 3;
+d6 = 1;
+_objective = 8;
+----------
+==========
+Finished in 765msec.
+```
+
+# Задание №5
+
