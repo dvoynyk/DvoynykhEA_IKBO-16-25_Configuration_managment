@@ -106,4 +106,5 @@ latest: 5.2.1
 latest-4: 4.22.3
 
 published 10 months ago by jonchurch <npm@jonchurch.com>
+
  ```
