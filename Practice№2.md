@@ -271,3 +271,48 @@ Finished in 782msec.
 Расшифровка: menu_ver = 1 -> menu_ver = 1.0.0; dropdown_ver = 1 -> 1.8.0; icons_ver = 1 -> icons_ver = 1.0.0
 
 # Задание №6
+
+```
+% root: 1.0.0 = 1;
+% foo: 1.0.0 = 1;
+% foo: 1.1.0 = 2;
+% left: 1.0.0 = 1;
+% right: 1.0.0 = 1;
+% shared: 1.0.0 = 1;
+% shared: 2.0.0 = 2;
+% target 1.0.0 = 1;
+% target 2.0.0 = 2;
+
+int: root = 1;     
+var 1..2: foo;      
+var 0..1: left;    
+var 0..1: right;    
+var 0..2: shared;   
+var 1..2: target;   
+ 
+constraint foo in 1..2;
+constraint target = 2;
+ 
+ constraint foo = 2 -> left = 1;
+ constraint foo = 2 -> right = 1;
+ 
+ constraint left = 1 -> shared >= 1;
+ constraint right = 1 -> shared < 2;
+ 
+ constraint shared = 1 -> target = 1;
+ ```
+
+ **Вывод:**
+ ```
+Running task6.mzn
+422msec
+
+foo = 1;
+left = 0;
+right = 0;
+shared = 0;
+target = 2;
+----------
+Finished in 422msec.
+```
+
