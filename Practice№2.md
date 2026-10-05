@@ -233,3 +233,41 @@ Finished in 765msec.
 
 # Задание №5
 
+```
+% menu: 1=1.0.0, 2=1.1.0, 3=1.2.0, 4=1.3.0, 5=1.4.0, 6=1.5.0
+% dropdown: 1=1.8.0, 2=2.0.0, 3=2.1.0, 4=2.2.0, 5=2.3.0
+% icons: 1=1.0.0, 2=2.0.0
+
+var 1..6: menu_ver;
+var 1..5: dropdown_ver;
+var 1..2: icons_ver;
+
+constraint icons_ver = 1;
+
+constraint menu_ver = 6 -> dropdown_ver = 5;
+constraint menu_ver = 5 -> dropdown_ver = 4;
+constraint menu_ver = 4 -> dropdown_ver = 3;
+constraint menu_ver = 3 -> dropdown_ver = 2;
+constraint menu_ver = 2 -> dropdown_ver = 1;
+
+constraint dropdown_ver >= 2 -> icons_ver = 2;
+
+solve satisfy;
+
+```
+
+**Вывод:**
+```
+Running Task5.mzn
+782msec
+
+menu_ver = 1;
+dropdown_ver = 1;
+icons_ver = 1;
+----------
+Finished in 782msec.
+```
+
+Расшифровка: menu_ver = 1 -> menu_ver = 1.0.0; dropdown_ver = 1 -> 1.8.0; icons_ver = 1 -> icons_ver = 1.0.0
+
+# Задание №6
