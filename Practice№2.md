@@ -316,3 +316,20 @@ target = 2;
 Finished in 422msec.
 ```
 
+# Задание №7
+
+```
+int: num_packages;
+int: max_versions;
+
+array[1..num_packages] of var 0..max_versions: selected_version;
+
+array[1..num_packages, 1..max_versions, 1..num_packages] of int: dependencies;
+
+constraint forall(p in 1..num_packages, v in 1..max_versions)(
+    (selected_version[p] == v) -> 
+        forall(req in 1..num_packages)(
+            selected_version[req] >= dependencies[p, v, req]
+        )
+);
+```
